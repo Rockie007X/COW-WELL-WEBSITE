@@ -8,10 +8,8 @@ from PIL import Image
 import streamlit as st
 
 # Load dataset
-data = pd.read_csv(
-    r"E:\live in lab contents\CODE\Cattle-disease-prediction-using-Machine-Learning-main\Training.csv",
-    encoding="utf-8"
-)
+data = pd.read_csv("Training.csv", encoding="utf-8")
+
 
 X = data.drop("prognosis", axis=1)
 y = data["prognosis"]
@@ -50,10 +48,7 @@ if st.button("🔍 நோய் கணிக்க"):
     st.info(f"🌡 வெப்பநிலை: {temperature}°C\n⚖ எடை: {weight} Kg\n❤️ துடிப்பு விகிதம்: {pulse_rate} bpm")
 
     # Show disease image if available
-    image_path = os.path.join(
-        r"E:\live in lab contents\CODE\Cattle-disease-prediction-using-Machine-Learning-main\disease_images",
-        f"{predicted_disease}.jpg"
-    )
+    image_path = os.path.join("disease_images", f"{predicted_disease}.jpg")
     if os.path.exists(image_path):
         st.image(Image.open(image_path), caption=predicted_disease, use_container_width=True)
     else:
